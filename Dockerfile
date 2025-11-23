@@ -23,9 +23,9 @@ RUN python -m pip install --upgrade pip && \
 COPY . /app
 
 # Non-root user for running the app, but keep root for startup tasks
-RUN useradd -m appuser
+RUN useradd -m appuser && chmod +x /app/start.sh
 
-# Fly will provide $PORT (defaults to 8080). We must use a shell form to expand it.
+# Fly will provide $PORT (defaults to 8080)
 ENV PORT=8080
 
 # Expose port (doc-only; Fly ignores EXPOSE but it’s still useful)
